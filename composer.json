@@ -1,0 +1,31 @@
+{
+	"name": "tacoberu/phpcs-coding-standard",
+	"description": "Set of rules for PHP_CodeSniffer preferring tabs and based on Nette coding standard.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Tomáš Votruba",
+			"email": "tomas.vot@gmail.com",
+			"homepage": "http://tomasvotruba.cz"
+		},
+		{
+			"name": "Martin Takáč",
+			"email": "martin@takac.name",
+			"homepage": "http://martin.takac.name"
+		}
+	],
+	"require": {
+		"php": ">=5.6",
+		"zenify/coding-standard": "3.3.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Taco\\CodingStandard\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Taco\\CodingStandard\\Tests\\": "tests"
+		}
+	}
+}

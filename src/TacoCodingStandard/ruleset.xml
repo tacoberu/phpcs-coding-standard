@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<ruleset name="Tacoberu">
+	<descrition>Tacoberu selection based by Zenify sniffs</descrition>
+
+	<!-- Based on -->
+	<rule ref="../../../../zenify/coding-standard/src/ZenifyCodingStandard">
+		<exclude name="Generic.Files.OneInterfacePerFile"/>
+		<exclude name="ZenifyCodingStandard.Classes.FinalInterface"/>
+		<exclude name="ZenifyCodingStandard.ControlStructures.ControlSignature"/>
+		<exclude name="ZenifyCodingStandard.Namespaces.UseDeclaration"/>
+		<exclude name="ZenifyCodingStandard.Naming.InterfaceName"/>
+		<exclude name="ZenifyCodingStandard.WhiteSpace.IfElseTryCatchFinally"/>
+	</rule>
+
+	<!-- WhiteSpaces -->
+	<rule ref="ZenifyCodingStandard.WhiteSpace.InBetweenMethodSpacing">
+		<properties>
+			<property name="blankLinesBetweenMethods" value="3"/>
+		</properties>
+	</rule>
+
+	<!-- Classes -->
+	<rule ref="Squiz.Scope.MemberVarScope"/>
+
+	<!-- Files -->
+	<rule ref="PSR1.Files.SideEffects"/>
+
+	<!-- Functions -->
+
+	<!-- Methods -->
+	<rule ref="Squiz.Scope.StaticThisUsage"/>
+
+	<!-- PHP -->
+	<rule ref="Generic.PHP.DeprecatedFunctions"/>
+
+	<!-- CodeAnalysis -->
+	<rule ref="Squiz.PHP.ForbiddenFunctions"/>
+	<rule ref="Squiz.PHP.GlobalKeyword"/>
+	<rule ref="Squiz.PHP.Heredoc"/>
+	<rule ref="Squiz.PHP.InnerFunctions"/>
+	<rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+	<rule ref="Squiz.PHP.NonExecutableCode"/>
+
+</ruleset>
