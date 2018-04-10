@@ -1,22 +1,20 @@
 <?php
 
 /**
- * Copyright (c) 2016 Martin Takáč (http://martin.takac.name)
- * @credits
- *	- Tomas Votruba (http://tomasvotruba.cz)
+ * This file is part of Zenify
+ * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace TacoCodingStandard\Sniffs\ControlStructures;
+namespace ZenifyCodingStandard\Sniffs\ControlStructures;
 
-use PHP_CodeSniffer\Files\File as PHP_CodeSniffer_File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File as PHP_CodeSniffer_File;
 
 
 /**
  * Rules:
  * - Same as @see Squiz_Sniffs_ControlStructures_ControlSignatureSniff
  * - This modification allows comments
- * - Statement %s must be in new line.
  */
 final class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 {
@@ -58,31 +56,40 @@ final class ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 		$this->ensureSingleSpaceAfterKeyword();
 		$this->ensureSingleSpaceAfterClosingParenthesis();
 		$this->ensureNewlineAfterOpeningBrace();
-		$this->ensureElseOrCatchInNewline();
-	}
 
+		// Only want to check multi-keyword structures from here on.
+		if ($tokens[$position]['code'] === T_TRY || $tokens[$position]['code'] === T_DO) {
+			$closer = $tokens[$position]['scope_closer'];
 
+		} elseif ($tokens[$position]['code'] === T_ELSE || $tokens[$position]['code'] === T_ELSEIF) {
+			$closer = $file->findPrevious(T_CLOSE_CURLY_BRACKET, ($position - 1));
 
-	/**
-	 * }EOLelse {
-	 * }EOLelseif (...) {
-	 * }EOLcatch (...) {
-	 */
-	private function ensureElseOrCatchInNewline()
-	{
-		if ($this->tokens[$this->position]['code'] === T_ELSE
-				|| $this->tokens[$this->position]['code'] === T_ELSEIF
-				|| $this->tokens[$this->position]['code'] === T_CATCH
-				) {
-			$current = $this->tokens[$this->position];
-			if ($closer = $this->file->findPrevious(T_CLOSE_CURLY_BRACKET, ($this->position - 1))) {
-				if ($current['line'] == ($this->tokens[$closer]['line'])) {
-					$this->file->addError('Statement %s must be in new line.', $closer, 'ElseMustBeInNewLine', [$current['content']]);
+		} else {
+			return;
+		}
+
+		// Single space after closing brace.
+		$found = 1;
+		if ($tokens[($closer + 1)]['code'] !== T_WHITESPACE) {
+			$found = 0;
+
+		} else {
+			if ($tokens[($closer + 1)]['content'] !== ' ') {
+				if (strpos($tokens[($closer + 1)]['content'], $file->eolChar) !== FALSE) {
+					$found = 'newline';
+
+				} else {
+					$found = strlen($tokens[($closer + 1)]['content']);
 				}
 			}
 		}
-	}
 
+		if ($found !== 1) {
+			$error = 'Expected 1 space after closing brace; %s found';
+			$data = [$found];
+			$file->addError($error, $closer, 'SpaceAfterCloseBrace', $data);
+		}
+	}
 
 
 	private function ensureSingleSpaceAfterKeyword()

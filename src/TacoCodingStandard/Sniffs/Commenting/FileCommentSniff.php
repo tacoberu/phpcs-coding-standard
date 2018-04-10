@@ -7,7 +7,7 @@
 
 namespace TacoCodingStandard\Sniffs\Commenting;
 
-use PEAR_Sniffs_Commenting_FileCommentSniff;
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FileCommentSniff as PEAR_Sniffs_Commenting_FileCommentSniff;
 
 
 final class FileCommentSniff extends PEAR_Sniffs_Commenting_FileCommentSniff

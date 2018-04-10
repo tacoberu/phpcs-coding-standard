@@ -3,7 +3,7 @@
 	<descrition>Tacoberu selection based by Zenify sniffs</descrition>
 
 	<!-- Based on -->
-	<rule ref="../../../../zenify/coding-standard/src/ZenifyCodingStandard">
+	<rule ref="../../backport/ZenifyCodingStandard">
 		<exclude name="Generic.Files.OneInterfacePerFile"/>
 		<exclude name="ZenifyCodingStandard.Classes.FinalInterface"/>
 		<exclude name="ZenifyCodingStandard.ControlStructures.ControlSignature"/>
@@ -34,7 +34,9 @@
 	<rule ref="Generic.PHP.DeprecatedFunctions"/>
 
 	<!-- CodeAnalysis -->
+<!--
 	<rule ref="Squiz.PHP.ForbiddenFunctions"/>
+-->
 	<rule ref="Squiz.PHP.GlobalKeyword"/>
 	<rule ref="Squiz.PHP.Heredoc"/>
 	<rule ref="Squiz.PHP.InnerFunctions"/>

@@ -7,9 +7,9 @@
 
 namespace TacoCodingStandard\Sniffs\Commenting;
 
-use PEAR_Sniffs_Commenting_FileCommentSniff;
-use PHP_CodeSniffer_File,
-	PHP_CodeSniffer_Tokens;
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FileCommentSniff as PEAR_Sniffs_Commenting_FileCommentSniff;
+use PHP_CodeSniffer\Util\Tokens as PHP_CodeSniffer_Tokens;
+use PHP_CodeSniffer\Files\File as PHP_CodeSniffer_File;
 
 /**
  * Parses and verifies the doc comments for classes.

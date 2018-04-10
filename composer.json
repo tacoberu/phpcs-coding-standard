@@ -21,7 +21,8 @@
 	"autoload": {
 		"psr-4": {
 			"Taco\\CodingStandard\\": "src"
-		}
+		},
+		"classmap": ["backport/"]
 	},
 	"autoload-dev": {
 		"psr-4": {
