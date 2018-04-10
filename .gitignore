@@ -1,2 +1,4 @@
 /vendor
+/temp
+/var
 composer.lock
